@@ -7,8 +7,10 @@ This project will use a graph data structure to create basic simulation of a mob
 Run Instructions
 
 Dependencies
+None
 
 System Requirements
+Currently tested with VS code 1.51.1
 
 Team Members
 Jon Castelli
@@ -16,3 +18,4 @@ Jon Castelli
 Contributors
 
 Open Issues/Bugs
+Could use a better way to display/process outputs

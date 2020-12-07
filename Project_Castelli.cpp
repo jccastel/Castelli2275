@@ -30,16 +30,18 @@ void generate_graph(Graph* g, std::string filename) {
     g->computeEdges();
 }
 
-//int main(int argc, const char * argv[]) {// cmdl
-int main(){
+int main(int argc, const char * argv[]) {// cmdl
+//int main(){
     Graph g;
-    string filename("nodeList.txt");//vs19
+    string filename(argv[1]);//vs19
     generate_graph(&g, filename);
     g.displayEdges();
 
-    double dt = 3;
+    // int t_end = 90;
+    // double dt = 3;
+    int t_end = stoi(argv[2]);
+    double dt = stod(argv[3]);
     double t = 0;
-    int t_end = 90;
 
     while (t<t_end) {
         g.updateNodes(dt);

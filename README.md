@@ -2,9 +2,30 @@
 CSCI 2275 Final Project
 
 Project Summary
-This project will use a graph data structure to create basic simulation of a mobile wireless network. The purpose of the graph is to model simple network parameters in order to elect the best path to transmit data through the network. Vertices will be individual radios. Edges will connect radios that have a positive signal to noise ratio (SNR). SNR weight will be used to determine the best path for data to pass through the network. However, the weighting may be non-linear as a hop through one radio to get to another beyond it will incur a penalty, as opposed to a direct connection.
+This project will use a graph data structure to create basic simulation of a mobile wireless network. The purpose of the graph is to model simple network parameters in order to elect the best path to transmit data through the network. Vertices will be individual radios. Edges will connect radios that receive a signal greater than the radios minimum sensetivity. Recieved signal stength will be compared to an array of throughput and sensetivity to determine theoretical throughput capacity. Because maximum throughput is desirable, the edge weigts will use the inverse of the throughput value so that Dijkstra's can be used to determine the best paths for data to pass through the network. 
+
+Currently out of scope:
+The weighting may be non-linear as a hop through one radio to get to another beyond it will incur a penalty, as opposed to a direct connection. It was determined that the use of inverted throughput values is sufficient in selecting reasonable paths. A more advanced version of Dijkstra's may prove to be a more advanced route selection algorithm (file:///C:/Users/jcastelli/Downloads/algorithms-13-00269-v2.pdf), but is out of scope at this time.
+
+The current output will be  observed when the code is run:
+Edges and weights for all radios at each input timestep
+At the end of the simulation: 
+the final cost of each radio to comunicate with any other radio in the network (for the final radio positions)
+the best path of each radio to route data to each other radio in the network (for the final radio positions)
+
+The included input file forms a simple 5 radio network. R1 is a static radio. R2 and R3 have a linear motion. R4 and R5 have a circular orbit motion.
+
 
 Run Instructions
+This is simulation that is not time constrained and requires the user to input a time to end, and a time step that the simulation will run at.
+It also uses the file NodeList.txt as an input file to initialize radio nodes.
+
+compile from command line using VScode:
+g++ -std=c++11 Project_Castelli.cpp Radio.cpp Graph_Castelli.cpp -o FinalProject
+
+run from command line:
+.\FinalProject NodeList.txt 90 3
+
 
 Dependencies
 None
@@ -19,3 +40,4 @@ Contributors
 
 Open Issues/Bugs
 Could use a better way to display/process outputs
+input file handling

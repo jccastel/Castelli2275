@@ -37,10 +37,17 @@ int main(int argc, const char * argv[]) {// cmdl
     generate_graph(&g, filename);
     g.displayEdges();
 
-    // int t_end = 90;
-    // double dt = 3;
-    int t_end = stoi(argv[2]);
-    double dt = stod(argv[3]);
+    int t_end;
+    double dt;
+    if (argv[3]>argv[2]){        
+        t_end = stoi(argv[2]);
+        dt = t_end/10;
+    }
+    else{
+        t_end = stoi(argv[2]);
+        dt = stod(argv[3]);
+    }
+     
     double t = 0;
 
     while (t<t_end) {

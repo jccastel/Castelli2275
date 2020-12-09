@@ -17,8 +17,11 @@ The included input file forms a simple 5 radio network. R1 is a static radio. R2
 
 
 Run Instructions
-This is simulation that is not time constrained and requires the user to input a time to end, and a time step that the simulation will run at.
-It also uses the file NodeList.txt as an input file to initialize radio nodes.
+This is simulation that is not time constrained and requires  few user input:
+1) Node list input file - initializes radio nodes
+2) the user to input a simulation time. This is the amount of time to be simulated. The simulation runs significantly faster than real time.
+3) time step (dt) that the simulation will run at.
+The run line below runs a 90 second simulation with a timestep (dt) of 3 seconds.
 
 compile from command line using VScode:
 g++ -std=c++11 Project_Castelli.cpp Radio.cpp Graph_Castelli.cpp -o FinalProject

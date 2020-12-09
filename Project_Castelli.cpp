@@ -52,7 +52,6 @@ int main(int argc, const char * argv[]) {// cmdl
         g.computeEdges();//update edges based of of new radio positions
         //g.displayEdges();        
         t += dt;
-        cout<<t<<endl;
     }
 
     g.dijkstra();

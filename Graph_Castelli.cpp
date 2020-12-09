@@ -107,7 +107,7 @@ void Graph::displayEdges()
 
 void Graph::updateNodes(double dt) {
     for (int i = 0; i < vertices.size(); i++) {
-        vertices[i]->r.updatePosition(dt);         
+        vertices[i]->r.updatePosition(vertices[i]->name, dt);         
     }
 }
 

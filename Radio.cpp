@@ -1,13 +1,14 @@
 #include "Radio.h"
 #include <iostream>
 #include <math.h>
+#include <fstream>
 
 using namespace std;
 
 const double pi = 3.14159;
 const double d2r = pi/180;
 
-Radio::Radio() {  
+Radio::Radio() {      
 }
 
 Radio::~Radio() {
@@ -22,8 +23,8 @@ radioNode Radio::getNode() {
     return node;
 }
 
-void Radio::updatePosition(double dt) {
-    motionModels(dt);
+void Radio::updatePosition(string rName, double dt) {
+    motionModels(rName, dt);
 }
 
 int Radio::getTXrate(radioNode r2) {
@@ -53,14 +54,16 @@ double Radio::getPathLoss(radioNode r1, radioNode r2) { // compute path loss bet
 
 double Radio::getRXsignal(radioNode r1, radioNode r2) {// compute SNR between any two radios
     // PWR = (TX_PWR + TX_GAIN + RX_GAIN)
-    // rxSignalStrength = PWR – PATH_LOSS – NOISE_FIGURE - FADE_MARGIN
+    // rxSignalStrength = PWR ï¿½ PATH_LOSS ï¿½ NOISE_FIGURE - FADE_MARGIN
     // SNR = rxSignalStrength - THRM_NOISE 
     int pwr = r1.power + r1.gain + r2.gain;
     double rxSignalStrength = (double)pwr - getPathLoss(r1, r2) - noiseFigure - fadeMargin;
     return rxSignalStrength;
 }
 
-void Radio::motionModels(double dt) {
+void Radio::motionModels(string rName, double dt) { 
+    // fstream output;
+    // output.open(rName+"positionOutput.csv", fstream::app);
     switch(node.motion_model){
     case(0) : // static node     
         break;//node is static, do not update
@@ -72,9 +75,10 @@ void Radio::motionModels(double dt) {
         double w = node.v / node.r;//angular rate = velocity/radius
         double theta = atan2(node.y-node.yo,node.x-node.xo); 
         theta = theta + w * dt+(2*pi);//euler integration//add 2 pi so the solution is always positive
-        node.x = node.xo + node.r * sin(theta);//new x
-        node.y = node.yo + node.r * cos(theta);//new y
-
+        node.x = node.xo + node.r * cos(theta);//new x
+        node.y = node.yo + node.r * sin(theta);//new y
         break;
     }
+    // output<<node.x<<", " <<node.y<<"\n";
+    // output.close();
 }

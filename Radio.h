@@ -40,7 +40,7 @@ public:
     int getTXrate(radioNode r2);
     void setNode(radioNode r);
     radioNode getNode();
-    void updatePosition(double dt);
+    void updatePosition(std::string rName, double dt);
 protected:
 private: 
     radioNode node;
@@ -53,7 +53,7 @@ private:
     double getRange_km(radioNode r1, radioNode r2);
     double getPathLoss(radioNode r1, radioNode r2);
     double getRXsignal(radioNode r1, radioNode r2);
-    void motionModels(double dt);
+    void motionModels(std::string rName, double dt);
 };
 
 #endif // RADIO_H

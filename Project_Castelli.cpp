@@ -37,15 +37,12 @@ int main(int argc, const char * argv[]) {// cmdl
     generate_graph(&g, filename);
     g.displayEdges();
 
-    int t_end;
-    double dt;
-    if (argv[3]>argv[2]){        
-        t_end = stoi(argv[2]);
+    int t_end = stoi(argv[2]);
+    double dt = stod(argv[3]);
+    if (t_end<dt){        
+        t_end ;
         dt = t_end/10;
-    }
-    else{
-        t_end = stoi(argv[2]);
-        dt = stod(argv[3]);
+        cout<<"a3:"<<argv[3]<<" > a2 "<<argv[2]<<",default dt = t_end/10"<<endl;
     }
      
     double t = 0;
@@ -53,9 +50,9 @@ int main(int argc, const char * argv[]) {// cmdl
     while (t<t_end) {
         g.updateNodes(dt);
         g.computeEdges();//update edges based of of new radio positions
-        g.displayEdges();
-        
-        t = t + dt;
+        //g.displayEdges();        
+        t += dt;
+        cout<<t<<endl;
     }
 
     g.dijkstra();

@@ -25,7 +25,7 @@ struct vertex{
     double distance = (double) INT_MAX;
     double cost = (double) INT_MAX;
     vector<adjVertex*> adj;
-    vertex() {
+    vertex() {        
         visited = false;
     }
 };

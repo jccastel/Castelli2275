@@ -50,7 +50,7 @@ int main(int argc, const char * argv[]) {// cmdl
     while (t<t_end) {
         g.updateNodes(dt);
         g.computeEdges();//update edges based of of new radio positions
-        //g.displayEdges();        
+        g.displayEdges();        
         t += dt;
     }
 
